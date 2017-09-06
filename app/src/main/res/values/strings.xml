@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">kotlin_example2</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="tab_home">home</string>
+    <string name="tab_listview">listview</string>
+    <string name="tab_recyclerview">recyclerview</string>
+    <string name="tab_webview">webview</string>
+
+    <string name="settings">Settings</string>
+
+</resources>
