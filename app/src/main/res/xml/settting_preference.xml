@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="pref_category"
+        android:title="Settings">
+
+        <SwitchPreference
+            android:key="pref_used_name"
+            android:title="used name"
+            android:summary="test name state"
+            android:defaultValue="true"/>
+
+        <EditTextPreference
+            android:key="pref_name"
+            android:title="name"
+            android:summary="test name"
+            android:defaultValue="kotlin templat"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_info"
+        android:title="info">
+
+        <Preference
+            android:key="pref_app_version"
+            android:title="app version"
+            android:summary="1.0.0"/>
+
+        <Preference
+            android:key="pref_create_by"
+            android:title="create by"
+            android:summary="Jun Yong Su"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
