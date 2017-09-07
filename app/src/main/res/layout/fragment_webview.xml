@@ -3,10 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.sy.sample.kotlin_example2.custom_view.NestedWebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="WebView"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
