@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.sy.sample.kotlin_example2.model.DataModel
+import kotlinx.android.synthetic.main.card_item.view.*
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -55,16 +56,18 @@ class RecyclerFragment : Fragment() {
             val item = mItems.get(position)
             Glide.with(activity)
                     .load(item.imgUrlString)
-                    .into(holder!!.img_view)
+                    .into(holder!!.image_view)
+            holder!!.text_view.text = "#$position"
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CustomViewHoler {
-            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.list_item, parent, false)
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.card_item, parent, false)
             return CustomViewHoler(view)
         }
 
         inner class CustomViewHoler(view : View) : RecyclerView.ViewHolder(view) {
-            val img_view = view.img_view
+            val image_view = view.card_img_view
+            val text_view = view.card_title
         }
 
     }

@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                headerviewChanged(position)
                 bottom_navigation_view.menu.getItem(position).isChecked = true
             }
         })
@@ -90,39 +89,23 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.tab_home -> {
                     view_pager.setCurrentItem(0)
-                    headerviewChanged(0)
                     true
                 }
                 R.id.tab_list -> {
                     view_pager.setCurrentItem(1)
-                    headerviewChanged(1)
                     true
                 }
                 R.id.tab_recycler -> {
                     view_pager.setCurrentItem(2)
-                    headerviewChanged(2)
                     true
                 }
                 R.id.tab_web -> {
                     view_pager.setCurrentItem(3)
-                    headerviewChanged(3)
                     true
                 }
             }
             false
         })
-    }
-
-    fun headerviewChanged(idx : Int) {
-//        when (idx) {
-//            0 -> {
-//                header_img.visibility = View.VISIBLE
-//            }
-//
-//            else -> {
-//                header_img.visibility = View.GONE
-//            }
-//        }
     }
 
     inner class MainPageAdapter(fm : FragmentManager, private var items : ArrayList<String>) : FragmentPagerAdapter(fm) {
