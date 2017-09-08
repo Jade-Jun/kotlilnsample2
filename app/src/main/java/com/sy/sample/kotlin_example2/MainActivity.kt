@@ -12,12 +12,13 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import com.bumptech.glide.Glide
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var pageadapter : MainPageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,11 @@ class MainActivity : AppCompatActivity() {
                 .into(header_img)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val fragment =  pageadapter.getItem(view_pager.currentItem)
+
+            if (fragment is RecyclerFragment) {
+                fragment.refresh()
+            }
         }
     }
 
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         tab_names.add("recycler")
         tab_names.add("webview")
 
-        val pageadapter = MainPageAdapter(supportFragmentManager, tab_names)
+        pageadapter = MainPageAdapter(supportFragmentManager, tab_names)
 
         view_pager.adapter = pageadapter
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

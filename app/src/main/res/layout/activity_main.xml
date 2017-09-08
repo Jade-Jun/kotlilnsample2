@@ -74,6 +74,6 @@
         android:layout_marginRight="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="right|bottom"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_replay" />
 
 </android.support.design.widget.CoordinatorLayout>
