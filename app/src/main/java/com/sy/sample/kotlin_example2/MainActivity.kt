@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             val fragment =  pageadapter.getItem(view_pager.currentItem)
 
             if (fragment is RecyclerFragment) {
-                fragment.refresh()
+//                fragment.refresh()
             }
         }
     }
