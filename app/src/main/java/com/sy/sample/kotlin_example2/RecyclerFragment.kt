@@ -2,6 +2,7 @@ package com.sy.sample.kotlin_example2
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.support.transition.Explode
 import android.support.transition.Transition
 import android.support.transition.TransitionManager
@@ -24,6 +25,9 @@ class RecyclerFragment : Fragment(), RecyclerContract.View {
 
     private lateinit var adapter : RecyclerAdapter
     private lateinit var mpresenter : RecyclerContract.Presenter
+    private var isUsedAnimated : Boolean = true
+
+    private lateinit var countdown : CountDownTimer
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
@@ -32,15 +36,26 @@ class RecyclerFragment : Fragment(), RecyclerContract.View {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        countdown = object : CountDownTimer(1000, 1000) {
+            override fun onFinish() {
+                isUsedAnimated = true
+            }
+
+            override fun onTick(p0: Long) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        }
+
         RecyclerPresenter(this)
 
         view.let {
             val layoutmanager = GridLayoutManager(activity, 2)
-            recycler_view.layoutManager = layoutmanager!!
+            recycler_view.layoutManager = layoutmanager
             adapter = RecyclerAdapter(context, ArrayList<DataModel.ListItem>())
 
             adapter.setClickListener(object : RecyclerAdapter.ItemClickListener{
                 override fun onItemClickListener(item: DataModel.ListItem) {
+                    isUsedAnimated = false
                     val viewRect = Rect()
                     view!!.getGlobalVisibleRect(viewRect)
 
@@ -51,8 +66,9 @@ class RecyclerFragment : Fragment(), RecyclerContract.View {
                         }
                     }
 
-                    explode.duration = 2000
+                    explode.duration = 1000
                     TransitionManager.beginDelayedTransition(recycler_view, explode)
+                    countdown.start()
                     adapter.clear()
                 }
             })
@@ -62,8 +78,10 @@ class RecyclerFragment : Fragment(), RecyclerContract.View {
         mpresenter.start()
     }
 
+
     override fun updateView(data: ArrayList<DataModel.ListItem>) {
-        adapter.addAllItems(data)
+        if (true and isUsedAnimated)
+            adapter.addAllItems(data)
     }
 
     override fun showToast(value: String) {
@@ -72,6 +90,10 @@ class RecyclerFragment : Fragment(), RecyclerContract.View {
 
     override fun setPresenter(presenter: RecyclerContract.Presenter) {
         this.mpresenter = presenter
+    }
+
+    override fun refresh() {
+        this.mpresenter.loadItems()
     }
 
     companion object {

@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.card_item.view.*
  * Created by SuYa on 2017. 9. 12..
  */
 class RecyclerAdapter(context : Context, items : ArrayList<DataModel.ListItem>) : RecyclerView.Adapter<RecyclerAdapter.CustomViewHoler>(){
-    var mItems = items;
-    var mContext = context
+    private var mItems = items;
+    private var mContext = context
 
     private var mclickListener : ItemClickListener? = null
 

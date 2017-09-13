@@ -33,11 +33,16 @@ class MainActivity : AppCompatActivity() {
                 .into(header_img)
 
         fab.setOnClickListener { view ->
-            val fragment =  pageadapter.getItem(view_pager.currentItem)
 
-            if (fragment is RecyclerFragment) {
-//                fragment.refresh()
+            val current_pos = view_pager.currentItem
+
+            when (current_pos) {
+                2 -> {
+                    val fragment : RecyclerFragment = supportFragmentManager.findFragmentByTag(getFragmentTag(R.id.view_pager, current_pos)) as RecyclerFragment
+                    if (null != fragment) fragment.refresh()
+                }
             }
+
         }
     }
 
@@ -110,6 +115,10 @@ class MainActivity : AppCompatActivity() {
             }
             false
         })
+    }
+
+    fun getFragmentTag(viewPagerID : Int, pos : Int) : String {
+        return "android:switcher:$viewPagerID:$pos"
     }
 
     inner class MainPageAdapter(fm : FragmentManager, private var items : ArrayList<String>) : FragmentPagerAdapter(fm) {

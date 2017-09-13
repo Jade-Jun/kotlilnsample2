@@ -10,6 +10,7 @@ interface RecyclerContract {
 
     interface View : BaseView<Presenter> {
         fun updateView(data : ArrayList<DataModel.ListItem>)
+        fun refresh()
     }
 
     interface Presenter : BasePresenter{
